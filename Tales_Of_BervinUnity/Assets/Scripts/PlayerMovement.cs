@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
     public Transform groundCheckRight;
 
     public Rigidbody2D rb;
+    public Animator animator;
     private Vector3 velocity = Vector3.zero;
 
     void FixedUpdate()
@@ -26,6 +27,9 @@ public class PlayerMovement : MonoBehaviour
         }
 
         MovePlayer(horizontalMovement);
+
+        float characterVelocity = Mathf.Abs(rb.velocity.x);
+        animator.SetFloat("Speed", characterVelocity);
     }
 
     void MovePlayer(float _horizontalMovement)
