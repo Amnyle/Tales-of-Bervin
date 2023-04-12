@@ -316,6 +316,7 @@ MonoBehaviour:
   groundCheckRight: {fileID: 1368989565}
   rb: {fileID: 983770971}
   animator: {fileID: 983770974}
+  spriteRenderer: {fileID: 983770972}
 --- !u!58 &983770969
 CircleCollider2D:
   m_ObjectHideFlags: 0
