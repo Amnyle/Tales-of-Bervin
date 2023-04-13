@@ -7,7 +7,8 @@ public class PlayerMovement : MonoBehaviour
 
     public bool isJumping;
     public bool isGrounded;
-    public bool isJump;
+    public int Jump = 2;
+    public bool asJump;
 
     public Transform groundCheckLeft;
     public Transform groundCheckRight;
@@ -26,12 +27,18 @@ public class PlayerMovement : MonoBehaviour
         if(Input.GetButtonDown("Jump") && isGrounded == true)
         {
             isJumping = true;
+            Jump = Jump - 1;
         };
 
-        if (isGrounded == false && isJumping == true)
+        if(Input.GetButtonDown("Jump") && Jump == 1 && isGrounded == false)
         {
-            isJump = true;
-        };
+            asJump = true;
+        }
+
+        if (isGrounded == true)
+        {
+            Jump = 2;
+        }
 
         MovePlayer(horizontalMovement);
 
@@ -50,12 +57,15 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.AddForce(new Vector2(0f, jumpForce));
             isJumping = false;
+            Jump = Jump - 1;
         };
-        if (isJump == true)
+
+        if(asJump == true && Jump == 1)
         {
             rb.AddForce(new Vector2(0f, jumpForce));
             isJumping = false;
-            isJump = false;
+            asJump = false;
+            Jump = 0;
         };
     }
 
